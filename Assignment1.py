@@ -1,17 +1,13 @@
 __author__ = 'pooja'
 
-#First time the game is played
-gameOn = True
-#Input name & display welcome message
-name = input("Hi! What is your name? ")
+gameOn = True #While the user wants to continue playing the game
+
+name = input("Hi! What is your name? ") #Input name & display welcome message
 print("Hello " + name + "! Let's play a game!\nThink of random number from 1 to 100, and I'll try to guess it!")
 
-#While the user is still playing the game
 while(gameOn):
-    #The number is not yet guessed
-    guessed = False
-    #Count of guesses
-    guess = 0
+    guessed = False #The number is not yet guessed
+    guess = 0 #Count of guesses
     #Initialize the range of the game: 0 to 100
     low = 0
     high = 100
@@ -21,7 +17,7 @@ while(gameOn):
         replyToGuess = input("Is it " + str((low + high)//2) + " (yes/no):")
         if(replyToGuess.lower() == "no"):
             replyToRange = input("Is the number larger than " + str((low + high)//2) + " (yes/no):")
-            if(replyToRange == "no"):
+            if(replyToRange.lower() == "no"):
                 high = (low + high)//2;
             else:
                 low = (low + high)//2;
