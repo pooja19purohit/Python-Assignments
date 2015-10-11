@@ -1,6 +1,5 @@
 __author__ = 'pooja'
-
-# add time calculation
+from datetime import datetime
 
 data_list=["And now here is my secret, a very simple secret: It is only with the heart that one can see rightly; what is essential is invisible to the eye.",
 "All grown-ups were once children... but only few of them remember it.",
@@ -76,7 +75,7 @@ data_list=["And now here is my secret, a very simple secret: It is only with the
 "But I, alas, do not know how to see sheep through the walls of boxes. Perhaps I am a little like the grown-ups. I have had to grow old.",
 "I remembered the fox. You risk tears if you let yourself be tamed.",
 "Wait for a time, exactly under the star. Then, if a little man appears who laughs, who has golden hair and refuses to answer questions, you will know who he is, If this should happen, please comfort me. Send me word that he has come back.",
-"If I am attempting to describe him, it is in order not to forget him. It is sad to forget a friend. Not every one has had a friend.",
+"If I am attempting to describe him, it is in order not to forget him. It is sadƒ to forget a friend. Not every one has had a friend.",
 "The thing that is important is the thing that is not seen",
 "Nevertheless he is the only one of them all who does not seem to me ridiculous. Perhaps that is because he is thinking of something else besides himself.",
 "If someone loves a flower of which just one exists among all the millions and millions of stars, that's enough to make him happy when he looks at the stars.",
@@ -89,6 +88,7 @@ mapping = {}
 
 
 def linearSearch(query):
+    dt1 = datetime.now()
     # ("and" in query) condition checks both and in query or both and & or in query
 
     if("or" in query and "and" not in query):
@@ -111,10 +111,12 @@ def linearSearch(query):
             words = set(quote.split())
             if query.issubset(words):
                 print("Found at",i,quote)
+    dt2 = datetime.now()
+    print("Time taken for linear implementation is " + str(dt2 - dt1))
 
 
 def keySearch(query):
-
+    dt1 = datetime.now()
     if("or" in query and "and" not in query):
         query.remove("or")
         print("Performing OR search for " + str(query))
@@ -140,7 +142,8 @@ def keySearch(query):
                     results = results & mapping[queryWord]
         for result in results:
             print("Found at ", result, data_list[result])
-
+    dt2 = datetime.now()
+    print("Time taken for Dictionary implementation is " + str(dt2 - dt1))
 
 
 userInput = input("query:")
@@ -154,5 +157,5 @@ for i,quote in enumerate(data_list):
             else:
                 mapping[word] = {i}
 
-
+linearSearch(query)
 keySearch(query)
